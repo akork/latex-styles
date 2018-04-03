@@ -1,0 +1,229 @@
+\def\path{../}
+
+\usemintedstyle{dsblue}
+\renewcommand{\theFancyVerbLine}{\sffamily % нумерация строк minted
+  \textcolor{DeepSkyBlue}{\scriptsize
+    {\arabic{FancyVerbLine}}}}
+
+\definecolor{DeepSkyBlue}{rgb}{0.12,0.56,1.0} % 31,143,255 1f8fff
+\tcbuselibrary{skins}
+\tcbuselibrary{xparse} % customizable arguments
+
+% listing for cpp
+
+\tcbset {
+		listingstyle/.style={
+				enhanced,
+				% enlarge left by=-2mm,
+				breakable,
+        listing only,
+				listing engine=minted,
+				top =- 2mm,
+				bottom = 0mm,
+				left =0.5mm,
+				attach boxed title to top left={yshift=2mm, yshifttext=-1mm},
+				bottomtitle = 2mm,
+				frame hidden,
+				colframe=black, colback=white,
+				boxed title style={
+          % fontsize=\small,
+					%xshift=4mm,
+					before skip=2mm,
+						after skip=2mm,
+						boxsep=5mm,
+						empty,
+						size=title,
+						toprule=2pt,
+						top=4pt,
+						overlay={
+							\draw[black,line width=1pt]
+								([yshift=-1pt]frame.south west) --
+								([yshift=-1pt]frame.south east);
+						}
+				},
+				coltitle=black,fonttitle=\footnotesize\bfseries,
+		}
+}
+
+\NewTCBInputListing
+[auto counter, number within=subsection]{\bashI}{m}{%
+  listingstyle,
+  minted language=console,
+  minted options={
+    % firstline=#3, firstnumber=#3, lastline=#4,
+    breaklines=true,
+    fontsize=\footnotesize,
+    linenos,
+    numbersep=4mm,
+    tabsize=2,
+    minted style=colorful,
+  },
+  listing file={\srcPath #1},
+  title=#1,
+  borderline west={0.2mm}{0mm}{black},
+  borderline west={0.2mm}{0.8mm}{black},
+}
+
+\NewTCBInputListing
+[auto counter, number within=subsection]{\cppN}{ O{} m G{1} G{} }{%
+  listingstyle,
+  minted language=c++,
+  minted options={
+    firstline=#3, firstnumber=#3, lastline=#4,
+    breaklines=true,
+    fontsize=\footnotesize,
+    linenos,
+    numbersep=4mm,
+    tabsize=2,
+    % minted style=colorful,
+  },
+  listing file={\srcPath #2},
+  title=#2,
+  borderline west={0.2mm}{0mm}{black},
+  borderline west={0.2mm}{0.8mm}{black},
+}
+
+\NewTCBInputListing
+[auto counter, number within=subsection]{\pyN}{ O{} m G{1} G{} }{%
+  listingstyle,
+  minted language=python,
+  minted options={
+    firstline=#3, firstnumber=#3, lastline=#4,
+    breaklines=true,
+    fontsize=\footnotesize,
+    linenos,
+    numbersep=4mm,
+    tabsize=2,
+    % minted style=colorful,
+  },
+  listing file={\srcPath #2},
+  title=#2,
+  borderline west={0.2mm}{0mm}{black},
+  borderline west={0.2mm}{0.8mm}{black},
+}
+
+\NewTCBListing
+[auto counter, number within=subsection]{cppL}{ O{} m G{1} G{} }{%
+  listingstyle,
+  minted language=c++,
+  minted options={
+    % firstline=#3, firstnumber=#3, lastline=#4,
+    breaklines=true,
+    fontsize=\footnotesize,
+    linenos,
+    numbersep=4mm,
+    tabsize=2,
+  },
+  % listing file={\srcPath #2},
+  title=#2,
+  borderline west={0.2mm}{0mm}{black},
+  borderline west={0.2mm}{0.8mm}{black},
+}
+
+\NewTCBListing
+[auto counter, number within=subsection]{textL}{ O{} m G{1} G{} }{%
+  listingstyle,
+  minted language=cpp,
+  minted options={
+    % firstline=#3, firstnumber=#3, lastline=#4,
+    breaklines=true,
+    fontsize=\footnotesize,
+    % linenos,
+    % numbersep=4mm,
+    tabsize=2,
+    style=coloredtext,
+    % minted style=colorful,
+  },
+  % listing file={\srcPath #2},
+  title=#2,
+  borderline west={0.2mm}{0mm}{black},
+  borderline west={0.2mm}{0.8mm}{black},
+}
+
+\NewDocumentCommand\cppl
+{O{} >{\SplitList{;}} m}{%
+  \cppL[#1]#2
+}
+
+\NewDocumentCommand\textl
+{O{} >{\SplitList{;}} m}{%
+  \textL[#1]#2
+}
+
+% listing for output
+
+\NewDocumentCommand\txt
+{O{} >{\SplitList{;}} m}{%
+  \txtLst#2(#1)
+}
+
+\NewDocumentCommand\cpp
+{O{} >{\SplitList{;}} m}{%
+  \cppN[#1]#2
+}
+
+\NewDocumentCommand\py
+{O{} >{\SplitList{;}} m}{%
+  \pyN[#1]#2
+}
+
+\NewTCBInputListing[auto counter, number within=subsection]{\txtLst}
+{ m G{1} G{} D(){}}{%
+  listingstyle,
+  minted language=text,
+  minted options={
+    firstline=#2, firstnumber=#2, lastline=#3,
+    breaklines=true, fontsize=\footnotesize,
+  },
+  listing file={\srcPath #1},
+  title=#1,
+    #4
+}
+
+\newtcbinputlisting[auto counter, number within=subsection]{\lisp}[5][]{%
+		listingstyle,
+		minted language=elisp,
+				% minted style=autumn,
+				minted style=autumn,
+		minted options={
+				firstline=#3, firstnumber=#3, lastline=#4,
+				breaklines=true,
+				fontsize=\small,
+				% linenos,
+				numbersep=4mm,
+				tabsize=2,
+        #5
+		},
+		listing file={#1},
+		title=#2,
+		% borderline west={0.2mm}{0mm}{black},
+		% borderline west={0.2mm}{0.8mm}{black},
+}
+
+% listing for console
+\newtcbinputlisting[auto counter, number within=subsection]{\console}[1][]{%
+  %enhanced,
+    %enlarge left by=-2mm,
+    breakable, listing only,
+    listing engine=minted,minted language=console,
+    minted options={
+      breaklines=true, fontsize=\footnotesize,
+				breaklines=true,
+				fontsize=\footnotesize,
+				linenos,
+				numbersep=4mm,
+				tabsize=2,
+    },
+    listing file={#1},
+    %top=-2mm,
+    %bottom=0mm,
+    %left=0.5mm,
+    %bottomtitle = 2mm,
+    %frame hidden,
+    %colframe=black, colback=white,
+}
+
+%%% Local Variables:
+%%% TeX-master: "../report.tex"
+%%% TeX-engine: luatex 
+%%% End:

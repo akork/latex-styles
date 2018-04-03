@@ -1,0 +1,16 @@
+\usepackage{xparse}
+\usepackage{minted}
+
+\NewDocumentCommand\bash
+{m}{%
+ \mint[fontsize=\footnotesize,]{bash}{$ #1}
+}
+
+\NewDocumentCommand\cpp_l
+{m}{%
+ \mint[fontsize=\footnotesize,]{cpp}{$ #1}
+}
+
+%%% Local Variables:
+%%% TeX-master: "../report.tex"
+%%% End:

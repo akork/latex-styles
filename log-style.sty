@@ -1,0 +1,72 @@
+\usepackage{fontspec}
+% --------- fonts & language --------------------------------------------------
+
+\usepackage{polyglossia} % загружает пакет многоязыковой вёрстки
+\setdefaultlanguage[spelling=modern]{russian} % устанавливает главный язык документа
+\setotherlanguage{english} % объявляет второй язык документа
+\def\myfont{Calibri}
+\setromanfont{\myfont}
+\newfontfamily\cyrillicfontrm{\myfont}
+\setsansfont{\myfont}
+\newfontfamily\cyrillicfontsf{\myfont}
+\setmonofont{Lucida Console}
+\newfontfamily\cyrillicfonttt{Lucida Console}
+\setmainfont{\myfont}
+\newfontfamily\cyrillicfont{\myfont}
+
+\usepackage[svgnames]{xcolor}
+
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage[english,russian]{babel}
+
+%\inputencoding{latin2}
+%\bibliography{mybib}
+%\inputencoding{utf8}
+
+\frenchspacing
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{bm}
+
+\hypersetup{
+	colorlinks   = true, %Colours links instead of ugly boxes
+	urlcolor     = blue, %Colour for external hyperlinks
+	linkcolor    = blue, %Colour of internal links
+	citecolor   = red %Colour of citations
+}
+\usepackage{longtable}
+%\usepackage[table]{xcolor}  
+\usepackage{array}
+%\usepackage{color}
+%\usepackage{xcolor}
+
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{#3}}}%
+
+%\usepackage{listings}
+%\usepackage{alltt}
+\usepackage{csquotes}
+
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+\newcommand{\pluseq}{\mathrel{{+}{=}}}
+\newcommand{\minuseq}{\mathrel{{-}{=}}}
+\newcommand{\diveq}{\mathrel{{/}{=}}}
+\newcommand{\muleq}{\mathrel{{*}{=}}}
+
+\newcommand{\vect}[1]{
+		\begin{bmatrix}
+				#1
+		\end{bmatrix}
+}
+\newcommand{\mat}[1]{
+		\begin{bmatrix}
+				#1
+		\end{bmatrix}
+}

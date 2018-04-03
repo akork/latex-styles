@@ -1,0 +1,181 @@
+\newcommand \srcPath{./}
+\NewDocumentCommand\setSrcPath{m}{%
+  \renewcommand\srcPath{#1}
+}
+
+\usepackage{calc}% http://ctan.org/pkg/calc
+\newlength{\marginwidth}
+\setlength{\marginwidth}{(\paperwidth - \textwidth)/2-1cm}%
+\newlength{\printwidth}
+\setlength{\printwidth}{(\paperwidth - 1.5cm}%
+\newlength{\printmargin}
+\setlength{\printmargin}{1cm}%
+
+% ---------- tcolorbox --------------------------------------------------------
+\usepackage{tikz}
+\usetikzlibrary{intersections}
+\usepackage{empheq}
+
+\usepackage[minted, breakable, theorems, skins, fitting]
+					 {tcolorbox} %+tikz+amsmath+amsthm+amssvmb
+
+\tcbset{
+	highlight math style={
+		nontitletopss,
+	},
+	skystyle/.style={
+		% center title,
+		arc=0mm, boxrule=0pt,
+		boxsep=0mm, left=0mm, top=20mm, bottom=0mm,
+		bottomrule at break=0mm, toprule at break=0mm,
+		% right skip=1cm,
+		% left skip=1cm,
+		after=\par,
+		before=\centering,
+		colframe=Black, colback=white,
+		fontupper=\itshape, % fonts
+	},
+	titlestyle1/.style={
+		% attach boxed title to right,
+		% 		attach boxed title to top left,
+		% boxed title style={empty,size=minimal,toprule=2pt,top=4pt,}
+
+		% center title,
+		% toptitle=2mm, bottomtitle=2mm, lefttitle=3mm,
+		% titlerule=0pt,
+		coltitle=DeepSkyBlue, colbacktitle=white,
+		fonttitle=\bfseries\upshape\small,
+	},
+		nontitleleftss/.style={
+				skystyle,
+				% leftrule=2mm,
+				left=3mm, top=2mm, bottom=2mm,
+		},
+		titleleftss/.style={
+				skystyle,
+				% leftrule=2mm,
+				% rightrule=0mm,
+				% toprule=0mm,
+				% bottomrule=0mm,
+				% titlerule=0mm,
+				left=3mm, top=2mm, bottom=2mm,
+				% titlestyle1,
+				% subtitle style={
+				% 		before skip=0mm, after skip=1mm, bottom=-2mm
+				% },
+		},
+		nontitletopss/.style={
+			skystyle,
+			toprule=1mm,
+			left=3mm, top=2mm, bottom=2mm,
+			enhanced,
+		},
+		titletopss/.style={
+				skystyle,
+				titlestyle1,
+				% toprule=2mm,
+				left=3mm, top=2mm, bottom=2mm,
+				enhanced
+		},
+		theostyle/.style={
+				titleleftss,
+		},
+		hlt/.style={
+				nontitleleftss,
+				before=,after=,
+		}
+}
+
+\newtcolorbox{testbox}[2][]{
+  center, enhanced
+  }
+  
+\newtcolorbox{mybox}[2][]{colback=red!5!white,
+colframe=red!75!black,fonttitle=\bfseries,
+colbacktitle=red!85!black,enhanced,
+attach boxed title to top center={yshift=-2mm},
+title=#2,#1}
+
+\newtcbtheorem[auto counter, number within=subsection]{Theorem}{Теорема}%
+{theostyle,}{theo}
+
+\newtcolorbox[auto counter, number within=chapter]{myplotbox}[2]{
+  center,
+  enhanced,
+  width=\textwidth,
+  % rightskip=0,
+  % leftskip=0,
+  grow to left by=1cm,
+  grow to right by=1cm,
+  % enlarge by=3cm,
+		float,
+		% titletopss,
+		% title ={Рис. \thetcbcounter : #1},
+		% capture=hbox,
+		center title,
+		toptitle=2mm, bottomtitle=2mm, lefttitle=3mm,
+		% titlerule=0pt,
+		coltitle=Black, colbacktitle=white,
+		fonttitle=\bfseries\upshape\small,
+		colframe=DeepSkyBlue, colback=white,
+    % before=\par\smallskip\centering,after=\par,hbox,
+    show bounding box,
+    % flushright,
+		#2,
+}
+
+\newtcbtheorem[number within=section]{myTheo}{Теорема}%
+{colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{th}
+
+\newtcbtheorem[number within=section]{myDef}{Определение}%
+{colback=blue!5,colframe=blue!35!black,fonttitle=\bfseries}{def}
+
+\newtcbtheorem[number within=section]{myRemark}{Замечание}%
+{colback=red!5,colframe=red!35!black,fonttitle=\bfseries}{rem}
+
+\newtcbtheorem[number within=section]{myExample}{Пример}%
+{colback=magenta!5,colframe=magenta!35!black,fonttitle=\bfseries}{examp}
+
+\newtcbtheorem[number within=section]{myCons}{Следствие}%
+{colback=magenta!5,colframe=magenta!35!black,fonttitle=\bfseries}{cons}
+
+\newcommand{\plotb}[3]{
+	\begin{myplotbox}{#2}{#3}
+		\includegraphics{#1}
+	\end{myplotbox}
+}
+
+\newcommand{\img}[2][0.9]{
+  \begin{center}
+    \hspace*{0}\includegraphics[width=#1\textwidth]{\srcPath #2}
+  \end{center}
+}
+
+\newcommand{\imgfull}[3][\printmargin]{
+  \noindent
+  \begin{figure}
+    \caption{#3}
+  \includegraphics[width=\paperwidth-#1*2, center]{\srcPath #2}
+  \end{figure}
+}
+
+\newcommand*{\ClipSep}{0.15cm}%
+\newcommand{\pngbox}[3]{
+  \begin{myplotbox}{#3}{}
+    \begin{tikzpicture} 
+      \begin{scope}
+        \clip [rounded corners=.2cm] (0,0) rectangle coordinate (centerpoint) (15,15 cm); 
+        \node [inner sep=0pt] at (centerpoint) {\tcbincludegraphics[blank,arc=\ClipSep, graphics options = {#2}]{#1}}; 
+      \end{scope}
+    \end{tikzpicture}
+    % \tcbincludegraphics[blank,arc=\ClipSep, graphics options = {#2}]{#1}
+  \end{myplotbox}
+}
+
+\usepackage{placeins}
+
+\usepackage{styles/tcbListings}
+
+%%% Local Variables:
+%%% TeX-master: "../report.tex"
+%%% End:

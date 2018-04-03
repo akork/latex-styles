@@ -1,0 +1,26 @@
+\usepackage{amsmath}
+
+\renewcommand{\lft}{\mathopen{}\mathclose\bgroup\left}
+\renewcommand{\rgt}{\aftergroup\egroup\right}
+
+\renewcommand{\xlft}{\mathopen{}\mathclose{}\left}
+\renewcommand{\xrgt}{\right}
+
+\DeclarePairedDelimiter\evAt{}{\rvert}
+\newcommand{\evat}[1]{\hspace{-1.2pt}\lft.#1\rgt\rvert}
+\newcommand{\xevat}[1]{\xlft.#1\xrgt\rvert}
+\newcommand{\xxevat}[1]{\!\!\left.#1\right\rvert}
+\DeclarePairedDelimiter\rBra{\lparen}{\rparen}
+\newcommand{\rbra}[1]{\rBra*{#1}}
+\DeclarePairedDelimiter\sBra{\lbrack}{\rbrack}
+\newcommand{\sbra}[1]{\hspace{-1pt}\rBra*{#1}}
+
+\newenvironment{xcases}{
+  \begin{equation*}
+  \left\{
+    \begin{aligned}
+}{
+    \end{aligned}
+  \right.
+  \end{equation*}
+}

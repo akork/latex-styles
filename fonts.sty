@@ -1,0 +1,61 @@
+\usepackage{fontspec}
+% \usepackage{xltxtra} % \XeLaTeX macro
+% \defaultfontfeatures{Mapping=tex-text}
+% \defaultfontfeatures{Ligatures=Tex}
+\usepackage{polyglossia}
+
+% \setdefaultlanguage{russian} 	% задаем язык по умолчанию, 
+                % для правильного отображения некоторых разделов
+                % таких как Содержание, предметный указатель
+\setmainlanguage{russian}
+\setotherlanguage{english}
+
+\def\fontpath{Path = styles/fonts/}
+\def\myfont{texgyrepagella-regular.otf}
+\def\myfontTT{SourceCodePro-regular.otf}
+
+\setmainfont{\myfont}[
+\fontpath,
+BoldFont = texgyrepagella-bold.otf,
+ItalicFont = texgyrepagella-italic.otf,
+BoldItalicFont = texgyrepagella-bolditalic.otf,
+% FontFace={m}{n}{texgyrepagella-regular.otf},
+% FontFace={bx}{n}{texgyrepagella-bold.otf}
+]
+\setsansfont{\myfont}[
+\fontpath,
+BoldFont = texgyrepagella-bold.otf,
+ItalicFont = texgyrepagella-italic.otf,
+BoldItalicFont = texgyrepagella-bolditalic.otf,
+]
+\setmonofont{\myfontTT}[
+\fontpath,
+]
+
+\newfontfamily\cyrillicfontrm{\myfont}[
+\fontpath,
+BoldFont = texgyrepagella-bold.otf,
+ItalicFont = texgyrepagella-italic.otf,
+BoldItalicFont = texgyrepagella-bolditalic.otf,
+]
+\newfontfamily\cyrillicfontsf{\myfont}[
+\fontpath,
+BoldFont = texgyrepagella-bold.otf,
+ItalicFont = texgyrepagella-italic.otf,
+BoldItalicFont = texgyrepagella-bolditalic.otf,
+]
+\newfontfamily\cyrillicfonttt{\myfontTT}[
+\fontpath,
+]
+
+% \newcommand\euler{\setmathfont[Path = styles/fonts/, math-style=upright]{euler.otf}}
+% \newcommand\xits{\setmathfont[Path = styles/fonts/, math-style=TeX]{xits-math.otf}}
+% \euler
+
+\def\la{\ensuremath\longrightarrow}
+
+%%% Local Variables:
+%%% TeX-master: "../report.tex"
+%%% TeX-engine: luatex
+%%% End:
+ 
