@@ -1,10 +1,13 @@
 \usepackage{amsmath}
+\usepackage{amssymb}
 
-\renewcommand{\lft}{\mathopen{}\mathclose\bgroup\left}
-\renewcommand{\rgt}{\aftergroup\egroup\right}
+\usepackage{bm} % bold math \bm{\alpha}
 
-\renewcommand{\xlft}{\mathopen{}\mathclose{}\left}
-\renewcommand{\xrgt}{\right}
+\newcommand{\lft}{\mathopen{}\mathclose\bgroup\left}
+\newcommand{\rgt}{\aftergroup\egroup\right}
+
+\newcommand{\xlft}{\mathopen{}\mathclose{}\left}
+\newcommand{\xrgt}{\right}
 
 \DeclarePairedDelimiter\evAt{}{\rvert}
 \newcommand{\evat}[1]{\hspace{-1.2pt}\lft.#1\rgt\rvert}
@@ -24,3 +27,4 @@
   \right.
   \end{equation*}
 }
+\usepackage{breqn}

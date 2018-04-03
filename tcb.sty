@@ -145,20 +145,6 @@ title=#2,#1}
 	\end{myplotbox}
 }
 
-\newcommand{\img}[2][0.9]{
-  \begin{center}
-    \hspace*{0}\includegraphics[width=#1\textwidth]{\srcPath #2}
-  \end{center}
-}
-
-\newcommand{\imgfull}[3][\printmargin]{
-  \noindent
-  \begin{figure}
-    \caption{#3}
-  \includegraphics[width=\paperwidth-#1*2, center]{\srcPath #2}
-  \end{figure}
-}
-
 \newcommand*{\ClipSep}{0.15cm}%
 \newcommand{\pngbox}[3]{
   \begin{myplotbox}{#3}{}

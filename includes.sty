@@ -1,0 +1,36 @@
+\usepackage{svg} % magically includes svg
+
+\newcommand{\img}[2][0.9]{
+  \begin{center}
+    \hspace*{0}\includegraphics[width=#1\textwidth]{\srcPath #2}
+  \end{center}
+}
+
+\newcommand{\imgfull}[3][\printmargin]{
+  \noindent
+  \begin{figure}
+    \caption{#3}
+  \includegraphics[width=\paperwidth-#1*2, center]{\srcPath #2}
+  \end{figure}
+}
+
+\newcommand{\imgfloat}[3][\printmargin]{
+  \noindent
+  \begin{figure}
+    \makebox[\textwidth][c]{
+  \includegraphics[width=\paperwidth-#1*2]{\srcPath #2}
+  }
+    \caption{#3}
+  \end{figure}
+}
+
+\newcommand{\imginplace}[2][\printmargin]{
+  \noindent
+  \hspace{-\leftmargin-\itemindent}
+  \makebox[\textwidth][c]{
+    \noindent\begin{minipage}[c][][c]{\paperwidth-#1*2}
+    \includegraphics[width=\paperwidth-#1*2]{\srcPath #2}
+  \end{minipage}
+  }
+}
+
