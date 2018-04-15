@@ -1,6 +1,0 @@
-PWD /Users/Aleksey/Dropbox/Studies/_CS/CSMAI/cp.report/styles
-INPUT /usr/local/texlive/2015/texmf-var/web2c/luatex/lualatex.fmt
-INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/lualatexquotejobname.lua
-INPUT ./sections.sty
-OUTPUT sections.log
-INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
